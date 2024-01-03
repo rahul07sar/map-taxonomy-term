@@ -1,0 +1,7 @@
+map_taxonomy_terms.term-settings:
+  path: '/taxonomy-term-settings'
+  defaults:
+    _form: '\Drupal\map_taxonomy_terms\Form\TaxonomyTermMappingForm'
+    _title: 'Configure Taxonomy Mapping'
+  requirements:
+    _permission: 'access content'

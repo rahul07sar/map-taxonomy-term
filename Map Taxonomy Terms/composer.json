@@ -1,0 +1,35 @@
+{
+    "name": "drupal/map_taxonomy_terms",
+    "description": "Maps (hide/show) taxonomy terms as per requirement.",
+    "type": "drupal-module",
+    "homepage": "http://drupal.org/project/map_taxonomy_terms",
+    "authors": [
+      {
+        "name": "Rahul",
+        "homepage": "https://www.drupal.org/u/rahul07s",
+        "role": "Maintainer"
+      },
+      
+      {
+        "name": "See contributors",
+        "homepage": "https://www.drupal.org/node/2865869/committers"
+      }
+    ],
+    "support": {
+      "issues": "http://drupal.org/project/map_taxonomy_terms"
+    },
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "suggest": {},
+    "require": {
+      "drupal/core": "^8.8 || ^9 || ^10"
+    },
+    "extra": {
+      "drush": {
+        "services": {
+          "drush.services.yml": "^9 || ^10 || ^11"
+        }
+      }
+    }
+  }
+  

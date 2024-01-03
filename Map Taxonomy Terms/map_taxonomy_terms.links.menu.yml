@@ -1,0 +1,6 @@
+map_taxonomy_terms.term_settings:
+  title: "Configure Taxonomy Mapping"
+  description: "Mapping settings for Taxonomy to form checkboxes."
+  parent: system.admin_config_services
+  weight: 0
+  route_name: map_taxonomy_terms.term-settings

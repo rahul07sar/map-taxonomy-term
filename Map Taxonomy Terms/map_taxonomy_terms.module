@@ -1,0 +1,27 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\Entity\User;
+use Drupal\node\Entity\Node;
+use Drupal\webform\Entity\Webform;
+use Drupal\Component\Utility\Html;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Component\Serialization\Json;
+use Drupal\Core\Url;
+use Drupal\map_taxonomy_terms\Form\TaxonomyTermMappingForm;
+
+/**
+ *
+ * Implements taxonomy term form.
+ *
+ */
+
+function map_taxonomy_terms_get_taxonomy_dynamic_mappings() {
+	  $mapping = \Drupal::configFactory()->get(TaxonomyTermMappingForm::Taxonomy_TERMS_SETTINGS);
+    if (empty($mapping)) {
+      return [];
+    }
+    return $mapping->get('mapping')['names_fieldset_wrapper'];
+}

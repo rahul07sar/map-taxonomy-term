@@ -1,0 +1,64 @@
+/** The code in this final can be used in any of the form to display the taxonomy terms
+*   as per the requirement.
+*/
+
+<?php
+
+
+ * @file
+ * Contains Drupal\map_taxonomy_terms\Form\GeneralOutputForm.
+ */
+
+namespace Drupal\map_taxonomy_terms\Form;
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Block\BlockBase;
+use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
+use Drupal\Core\Url;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\profile\Entity\Profile;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\node\Entity\Node;
+use Drupal\Component\Serialization\Json;
+
+
+class GeneralOutputForm extends FormBase
+
+{
+  $terms = 'maptaxonomy'; (Add this variable name as per your choice)
+  $taxonomy_list = self::getTaxnomonyList($terms);
+
+public function getTaxnomonyList($terms, $include = TRUE)
+    {
+        $termslist_mapped = [];
+        $terms = \Drupal::entityTypeManager()
+            ->getStorage('taxonomy_term')
+            ->loadTree($terms);
+        $termslist = [];
+
+        if ($include) {
+            $termslist = ['' => t('- Please Select -')];
+        }
+
+        foreach ($terms as $term) {
+            $termslist[$term->tid] = $term->name;
+        }
+        $dynamic_mapping = map_taxonomy_terms_get_taxonomy_dynamic_mappings();
+        if (!empty($dynamic_mapping)) {
+            $enabled = (int) $dynamic_mapping[$terms]['enable_override'];
+          if (!empty($dynamic_mapping[$terms]['terms']) && $enabled === 1) {
+            $terms = \Drupal::entityTypeManager()
+            ->getStorage('taxonomy_term')->loadMultiple($dynamic_mapping[$terms]['terms']);
+            foreach ($terms as $entity) {
+              $termslist_mapped[$entity->id()] = $entity->name->value;
+            }
+            return $termslist_mapped;
+          }
+        }
+        return $termslist;
+    }
+  }

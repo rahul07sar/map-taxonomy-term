@@ -1,0 +1,5 @@
+name: 'Map Taxonomy Terms'
+type: module
+description: 'Allows users to select and map taxonomy terms/vocabularies as per the requirements.'
+package: Custom
+core_version_requirement: ^8.8 || ^9 || ^10
